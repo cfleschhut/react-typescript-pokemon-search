@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 type Props = {
-  userName: string;
+  userName?: string;
   numberOfPokemons?: number;
 };
 
@@ -91,12 +91,23 @@ class PokemonSearch extends Component<Props, State> {
 
     return (
       <div>
+        <h1>Pokemon API search</h1>
         <p>
-          User {userName}{' '}
-          {numberOfPokemons && <span>has {numberOfPokemons} pokemons</span>}
+          {userName && numberOfPokemons && (
+            <span>
+              <span>User {userName} </span>
+              <span>has {numberOfPokemons} pokemons</span>
+            </span>
+          )}
         </p>
+
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={inputValue} onChange={this.handleChange} />
+          <input
+            type="text"
+            value={inputValue}
+            onChange={this.handleChange}
+            placeholder="Enter pokemon…"
+          />
           <button>Search</button>
         </form>
 

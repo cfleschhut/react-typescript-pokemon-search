@@ -5,7 +5,7 @@ import './App.css';
 const App = () => {
   return (
     <div className="App">
-      <PokemonSearch userName="User1" numberOfPokemons={5} />
+      <PokemonSearch />
     </div>
   );
 };
