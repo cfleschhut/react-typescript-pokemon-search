@@ -1,0 +1,27 @@
+.container {
+  margin: 50px;
+}
+
+nav ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid hsl(0, 0%, 90%);
+}
+
+nav a {
+  position: relative;
+  top: 1px;
+  display: block;
+  padding: 15px 25px;
+  font-size: 14px;
+  color: hsla(0, 0%, 0%, 0.65);
+  text-decoration: none;
+}
+
+nav a.active,
+nav a:hover {
+  color: hsl(210, 100%, 50%);
+  border-bottom: 2px solid hsl(210, 100%, 50%);
+}

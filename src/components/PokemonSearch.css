@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.pokemon-search {
-  margin: 50px;
-}
-
 .form {
   display: flex;
   margin-bottom: 30px;

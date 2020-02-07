@@ -110,7 +110,7 @@ class PokemonSearch extends Component<Props, State> {
 
     return (
       <div className="pokemon-search">
-        <h1>Pokemon API search</h1>
+        <h1>Pokemon API Search</h1>
         <p>
           {userName && numberOfPokemons && (
             <span>
@@ -139,4 +139,4 @@ class PokemonSearch extends Component<Props, State> {
   }
 }
 
-export default PokemonSearch;
+export { PokemonSearch };
