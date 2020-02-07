@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { capitalize } from 'lodash';
+import './PokemonSearch.css';
 
 type Props = {
   userName?: string;
@@ -10,6 +12,7 @@ type State = {
   inputValue: string;
   error: boolean;
   pokemon: Pokemon | null;
+  pokemons: [];
 };
 
 type Pokemon = {
@@ -23,8 +26,15 @@ class PokemonSearch extends Component<Props, State> {
     loading: false,
     inputValue: '',
     error: false,
-    pokemon: null
+    pokemon: null,
+    pokemons: []
   };
+
+  componentDidMount() {
+    // fetch(`https://pokeapi.co/api/v2/pokemon/`)
+    //   .then(response => response.json())
+    //   .then(data => console.log(data.results));
+  }
 
   handleChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ inputValue: ev.target.value });
@@ -34,6 +44,8 @@ class PokemonSearch extends Component<Props, State> {
     ev.preventDefault();
 
     const { inputValue } = this.state;
+
+    if (!inputValue) return;
 
     this.setState({ loading: true, inputValue: '' });
 
@@ -63,7 +75,7 @@ class PokemonSearch extends Component<Props, State> {
       if (error) {
         return (
           <div>
-            <p>Nothing found</p>
+            <h3>Nothing found…</h3>
           </div>
         );
       }
@@ -75,11 +87,18 @@ class PokemonSearch extends Component<Props, State> {
           ) : (
             <div>
               {pokemon && (
-                <div>
-                  <h3>{pokemon.name}</h3>
+                <div className="card">
+                  <h2>{capitalize(pokemon.name)}</h2>
                   <figure>
                     <img src={pokemon.imageUrl} alt="" />
-                    <figcaption>{pokemon.baseExperience}</figcaption>
+                    <figcaption>
+                      <div className="statistic">
+                        <div className="statistic-title">Base experience</div>
+                        <div className="statistic-content">
+                          {pokemon.baseExperience}
+                        </div>
+                      </div>
+                    </figcaption>
                   </figure>
                 </div>
               )}
@@ -90,7 +109,7 @@ class PokemonSearch extends Component<Props, State> {
     };
 
     return (
-      <div>
+      <div className="pokemon-search">
         <h1>Pokemon API search</h1>
         <p>
           {userName && numberOfPokemons && (
@@ -101,14 +120,17 @@ class PokemonSearch extends Component<Props, State> {
           )}
         </p>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="form">
           <input
             type="text"
+            className="text-input"
             value={inputValue}
             onChange={this.handleChange}
-            placeholder="Enter pokemon…"
+            placeholder="Enter pokemon name…"
           />
-          <button>Search</button>
+          <button type="submit" className="button">
+            Search
+          </button>
         </form>
 
         {renderResult()}
