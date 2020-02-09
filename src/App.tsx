@@ -5,7 +5,7 @@ import {
   Route,
   NavLink
 } from 'react-router-dom';
-import { PokemonSearch, Recharts } from './components/';
+import { PokemonSearch, Charts } from './components/';
 import './App.css';
 
 const App = () => (
@@ -19,7 +19,7 @@ const App = () => (
             </NavLink>
           </li>
           <li>
-            <NavLink to="/recharts">Recharts</NavLink>
+            <NavLink to="/charts">Charts</NavLink>
           </li>
         </ul>
       </nav>
@@ -28,8 +28,8 @@ const App = () => (
         <Route exact path="/">
           <PokemonSearch />
         </Route>
-        <Route path="/recharts">
-          <Recharts />
+        <Route path="/charts">
+          <Charts />
         </Route>
       </Switch>
     </div>
